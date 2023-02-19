@@ -1,0 +1,67 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <title>SUPER CHATGPT x ZT</title>
+    <link rel="stylesheet"
+          href="superchatgpt/style.css">
+    <script src="superchatgpt/jquery.3.6.3.js"></script>
+    <script src="superchatgpt/vue.global.js"></script>
+    <script src="superchatgpt/app.js"></script>
+</head>
+<body>
+<div id="app">
+    <section id="header">
+        <div>
+            <a href="superchatgpt.html"
+               title="SUPER CHATGPT x ZT">
+                <img src="superchatgpt/chatgpt.png"
+                     alt="LOGO">
+            </a>
+        </div>
+        <div>x</div>
+        <div>
+            <a href="superchatgpt.html"
+               title="SUPER CHATGPT x ZT">
+                <img src="superchatgpt/zt.png"
+                     alt="LOGO">
+            </a>
+        </div>
+    </section>
+    <section id="main">
+        <div class="dialog_list" id="dialog_list">
+            <div :class="'dialog_item dialog_item_'+item.type" v-for="(item,i ) in dialogList" :key="'dialog_item'+i">
+                <div style="width:50px; flex-shrink: 0">{{getTitle(item)}}：</div>
+                <div>{{getText(item)}}</div>
+            </div>
+        </div>
+        <div v-show="loading" style="padding-top: 10px;">
+            <img src="superchatgpt/icon_dot_msg.gif"
+                 alt="loading..."
+                 style="height: 40px;"
+            >
+        </div>
+        <div v-if="!dialogList.length">
+            你好，我是Super ChatGPT，请提问。
+        </div>
+        <input type="text" id="toolInput" style="border: none;height: 1px;opacity: 0;">
+    </section>
+    <section id="footer">
+        <div class="line-input">
+            <input type="text"
+                   id="txtPrompt"
+                   :disabled="loading"
+                   v-model.trim="nextPrompt"
+                   @keypress="handleInputKeypress"
+                   maxlength="100"
+                   class="tui"
+                   style="width:100%;">
+            <img src="superchatgpt/icon_enter.png" />
+        </div>
+    </section>
+</div>
+</body>
+</html>
